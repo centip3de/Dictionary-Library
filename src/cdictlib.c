@@ -1,18 +1,14 @@
-#include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
+#include "cdictlib.h"
 
-// TODO: Put this in the .h file
-typedef struct Dictionary
-{
-    char * contents;
-    int currentSize;
-    int totalSize;
-} Dictionary;
-
-
+// TODO: Improve this hash function
 int getHash(char * key) {
-
+    int sum = 0;
+    while(key != NULL) {
+        sum += *key;
+        key++;
+    }
+    return sum;
 }
 
 void * initDictionary(Dictionary * targetDict) {

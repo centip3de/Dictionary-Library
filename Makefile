@@ -1,10 +1,12 @@
 CC = gcc
 CCFLAGS = -Wall 
 
-%.o: %.c
+%.o: src/%.c
 	$(CC) -c $(CCFLAGS) $<
 
 all: cdictlib
+
+example: main
 
 cdictlib: cdictlib.o
 	$(CC) -o $@ cdictlib.o
