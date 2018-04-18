@@ -1,18 +1,20 @@
 CC = gcc
-CCFLAGS = -Wall 
+CCFLAGS = -g -Wall -Werror
+INCLUDE_FLAGS = -I include/
 
-%.o: src/%.c
-	$(CC) -c $(CCFLAGS) $<
+all: example
 
-all: cdictlib
+cdictlib.o: src/cdictlib.c
+	$(CC) -c $(INCLUDE_FLAGS) $(CCFLAGS) $<
 
-example: main
+example.o: examples/example.c
+	$(CC) -c $(INCLUDE_FLAGS) $(CCFLAGS) $<
 
 cdictlib: cdictlib.o
 	$(CC) -o $@ cdictlib.o
 
-main: main.o cdictlib.o
-	$(CC) -o $@ main.o cdictlib.o
+example: example.o cdictlib.o
+	$(CC) -o $@ example.o cdictlib.o
 
 clean: 
-	$(RM) *.o *.gch *.swp .DS_Store main 
+	$(RM) *.o *.gch *.swp .DS_Store example
