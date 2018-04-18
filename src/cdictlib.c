@@ -58,11 +58,8 @@ void setContents(Dictionary * targetDict, char * key, char * value) {
 
     int hash = getHash(key);
     int index = hash % targetDict->totalSize;
-    printf("Setting index %d to value %s\n", index, value);
-
-    targetDict->contents[index] = (char *)malloc(sizeof(char) * strlen(*value));
-    strncpy(targetDict->contents[index], *value, sizeof(*value));
-    printf("Getting test: %s\n", targetDict->contents[index]);
+    targetDict->contents[index] = (char *)malloc(sizeof(char) * strlen(value));
+    targetDict->contents[index] = value;
     targetDict->currentSize++;
 }
 
